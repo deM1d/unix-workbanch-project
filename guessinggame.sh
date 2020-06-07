@@ -3,6 +3,7 @@ function read_user_answer {
   read user_answer
 }
 
+echo "In this simple game you must guess how many files in current directory."
 correct_answer=$(ls | wc -l)
 read_user_answer
 
