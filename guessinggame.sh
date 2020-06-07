@@ -1,6 +1,6 @@
 function user_input {
   echo "How many files there are in current directory?"
-  read user_answer 
+  read user_answer
 }
 
 function read_user_answer {
@@ -8,6 +8,15 @@ function read_user_answer {
   while ! [[ $user_answer =~ ^[0-9]+$ ]]
   do
     echo "$user_answer is not a number. Write coorect number."
+    user_input
+  done
+
+  max_value=$(echo "(2^32)-1" | bc -l)
+  #  some hack I googled
+  user_answer=$(echo "$user_answer+0" | bc -l)
+  while [[ $user_answer -lt 0 || $user_answer -gt $max_value ]]
+  do
+    echo "Number must be bigger than 0 and less then $max_value"
     user_input
   done
 }
